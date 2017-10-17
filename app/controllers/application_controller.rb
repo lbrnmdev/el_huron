@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :check_header
+  before_action :validate_login
 
   private
 
@@ -19,15 +20,34 @@ class ApplicationController < ActionController::API
       end
       head 409 and return
     end
+
+    def validate_login
+      auth_token = request.headers["X-Api-Key"]
+      return unless auth_token
+      user = User.find_by auth_token: auth_token
+      return unless user
+      if 15.minutes.ago < user.updated_at
+        user.touch
+        @current_user = user
+      end
+    end
   
     def validate_user
-      auth_token = request.headers["X-Api-Key"]
-      head 403 and return unless auth_token
-      user = User.find_by auth_token: auth_token
-      head 403 and return unless user
+      head 403 and return unless @current_user
     end
 
     def render_error resource, status
       render json: resource, status: status, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
     end
+
+    def default_meta
+      {
+        licence: 'no idea yet',
+        authors: ['lbrnm'],
+        logged_in: (@current_user ? true : false)
+      }
+    end
+
+    # TODO ensure logged out clients can only perform create user action
+    # TODO ensure logged in user can only perform action relating to own profile 
 end

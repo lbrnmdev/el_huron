@@ -4,4 +4,5 @@ class User < ApplicationRecord
 
   # TODO validate format of username eg no spaces
   validates :username, presence: true, allow_blank: false, uniqueness: { case_sensitive: false }
+  validates :password, presence: true, length: { minimum: 6 }
 end

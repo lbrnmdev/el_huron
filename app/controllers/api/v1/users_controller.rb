@@ -2,7 +2,7 @@ module Api
   module V1
     class UsersController < ApplicationController
       before_action :set_user, only: [:show, :update, :destroy]
-      before_action :validate_user, only: [:update, :destroy]
+      before_action :validate_user, only: [:create, :update, :destroy] #FIXME including :create means only existing users with auth_tokens can create a new user 
       before_action :validate_type, only: [:create, :update]
 
       def index

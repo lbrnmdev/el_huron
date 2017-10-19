@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+league_1:
+  name: league_0
+  owner: user_0
+
+two:
+  name: league_1
+  owner: user_1

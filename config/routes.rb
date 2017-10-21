@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users
-      resources :leagues
+      resources :leagues do
+        resources :matches
+      end
       post 'login' => 'sessions#create'
       delete 'logout/:id' => 'sessions#destroy', as: 'logout'
     end

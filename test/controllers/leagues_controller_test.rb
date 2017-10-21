@@ -39,7 +39,7 @@ class LeaguesControllerTest < ActionDispatch::IntegrationTest
     skip
   end
 
-  test "updating an existing user with valid data should update that user" do
+  test "updating an existing league with valid data should update that league" do
     skip
   end
 

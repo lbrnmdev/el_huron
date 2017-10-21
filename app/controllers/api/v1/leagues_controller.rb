@@ -19,7 +19,7 @@ module Api
             @league = League.find params[:id]
           rescue ActiveRecord::RecordNotFound
             league = League.new
-            league.errors.add(:id, "Wrong ID provided")
+            league.errors.add(:id, "Wrong League ID provided")
             render_error(league, 404) and return
           end
         end

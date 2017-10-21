@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  league: one
-  date: 
+match_0:
+  league: league_0
+  date: <%= Date.today %>
+  winner: user_0
+  loser: user_1
 
-two:
-  league: two
-  date:
+match_1:
+  league: league_1
+  date: <%= Date.yesterday %>
+  winner: user_0
+  loser: user_2

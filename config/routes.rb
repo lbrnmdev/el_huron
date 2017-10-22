@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :leagues do
         resources :matches
       end
+      resources :table_entries
       post 'login' => 'sessions#create'
       delete 'logout/:id' => 'sessions#destroy', as: 'logout'
     end

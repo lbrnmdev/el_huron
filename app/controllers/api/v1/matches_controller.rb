@@ -18,9 +18,9 @@ module Api
           begin
             @match = Match.find params[:id]
           rescue ActiveRecord::RecordNotFound
-            league = Match.new
-            league.errors.add(:id, "Wrong Match ID provided")
-            render_error(league, 404) and return
+            match = Match.new
+            match.errors.add(:id, "Wrong Match ID provided")
+            render_error(match, 404) and return
           end
         end
     end

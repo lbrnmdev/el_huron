@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021011735) do
+ActiveRecord::Schema.define(version: 20171022001920) do
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 20171021011735) do
     t.index ["league_id"], name: "index_matches_on_league_id"
     t.index ["loser_id"], name: "index_matches_on_loser_id"
     t.index ["winner_id"], name: "index_matches_on_winner_id"
+  end
+
+  create_table "table_entries", force: :cascade do |t|
+    t.integer "league_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "player_id"
+    t.integer "won", default: 0
+    t.integer "lost", default: 0
+    t.decimal "win_percentage", default: "0.0"
+    t.index ["league_id"], name: "index_table_entries_on_league_id"
+    t.index ["player_id", nil], name: "index_table_entries_on_player_id_and_user_id", unique: true
+    t.index ["player_id"], name: "index_table_entries_on_player_id"
   end
 
   create_table "users", force: :cascade do |t|
